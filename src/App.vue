@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import Store from "@/store";
-
 export default {
     name: 'App',
     components: {
@@ -45,7 +43,7 @@ export default {
                 }
             ).then(response => {
                 let {data} = response;
-                Store.set('visit', data);
+                self.$cookie.set('sid', data.sid)
                 if(callback){
                     callback();
                 }
@@ -55,12 +53,9 @@ export default {
     created(){
         const self = this;
 
-        let visit = Store.get('visit', {});
-
-        if(!('sid' in visit) || !visit.sid){
+        let visit_sid = self.$cookie.get('sid')
+        if(!visit_sid){
             self.make_visit();
-        } else {
-            console.log(visit);
         }
     }
 }

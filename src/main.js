@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueCookie from 'vue-cookie';
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -14,6 +15,7 @@ import Main from './pages/main/main';
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
+Vue.use(VueCookie);
 Vue.use(ElementUI,{ locale });
 Vue.use(VueAxios, axios);
 

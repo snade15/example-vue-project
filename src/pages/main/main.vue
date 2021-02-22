@@ -52,8 +52,6 @@
 </template>
 
 <script>
-import Store from "@/store";
-
 const moment = require('moment');
 
 export default {
@@ -112,9 +110,7 @@ export default {
                 return
             }
 
-            let visit = Store.get('visit', {});
-
-            let visit_sid = visit['sid'] || null;
+            let visit_sid = self.$cookie.get('sid');
 
             if (!visit_sid) {
                 self.$emit('get_visit_sid', self.remote_search_method)
@@ -144,9 +140,7 @@ export default {
                 return;
             }
 
-            let visit = Store.get('visit', {});
-
-            let visit_sid = visit['sid'] || null;
+            let visit_sid = self.$cookie.get('sid');
 
             if (!visit_sid) {
                 self.$emit('get_visit_sid', self.get_quote)
@@ -159,7 +153,7 @@ export default {
             self.$http.post(
                 "https://api-staging.easyterra.dev/quotes",
                 {
-                    currency: visit.currency.code || "EUR",
+                    currency: "EUR",
                     productType: "cars",
                     filters: {
                         version: "qe-1.0"
@@ -221,6 +215,8 @@ export default {
 .search_button {
     margin-top: 15px;
     width: 100%;
+    background-color: #39a537;
+    font-size: 18px;
 }
 
 .quote_card{
